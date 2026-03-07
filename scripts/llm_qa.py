@@ -5,12 +5,17 @@ Usage:
     python scripts/llm_qa.py \
         --sample_id video_001 \
         --output_dir stg_output \
-        --api_base "https://api.openai.com/v1" \
-        --api_key "sk-xxx" \
-        --model "gpt-4" \
-        --question "What is the player doing?"
+        --api_base "https://dashscope.aliyuncs.com/compatible-mode/v1" \
+        --api_key "sk-78fece650be14d39af245674475a8f71" \
+        --model "qwen-plus-2025-07-14" \
+        --question "What is these player doing? How many people appeared in total? How many times did they shoot the ball in total, and when exactly were those shots taken?"
 """
 import argparse
+import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from openai import OpenAI
 from stg.config import STGConfig, EmbeddingConfig
 from stg.memory_manager import STGraphMemory
