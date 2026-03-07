@@ -169,11 +169,36 @@ class FAISSStore:
 
         return results
 
+    def _discover_entity_keys(self, sample_id: str) -> List[str]:
+        """
+        从磁盘扫描该 sample_id 下所有实体索引的 key
+        文件命名: {sample_id}_{key}.index
+        """
+        keys = []
+        import glob
+        pattern = str(self.faiss_dir / f"{sample_id}_entity_*.index")
+        for path in glob.glob(pattern):
+            fname = Path(path).stem  # e.g. video_001_entity_entity_0001
+            # 去掉 sample_id 前缀
+            key = fname[len(sample_id) + 1:]  # e.g. entity_entity_0001
+            keys.append(key)
+        return keys
+
+    def count_entity_keys(self, sample_id: str) -> int:
+        """统计磁盘上该 sample_id 的实体索引数量"""
+        return len(self._discover_entity_keys(sample_id))
+
     def search_all_entities(self, sample_id: str, query_embedding: np.ndarray,
                             top_k: int = 5, threshold: float = 0.5) -> List[Dict]:
         """
-        搜索所有实体向量库，返回合并结果
+        搜索所有实体向量库，返回合并结果。
+        会自动从磁盘发现并加载尚未加载的实体索引。
         """
+        # 从磁盘发现所有实体 key 并加载
+        entity_keys = self._discover_entity_keys(sample_id)
+        for key in entity_keys:
+            self.load_or_create_index(sample_id, key)
+
         if sample_id not in self.faiss_store:
             return []
 

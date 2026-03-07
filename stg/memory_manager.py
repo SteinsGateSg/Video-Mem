@@ -320,11 +320,32 @@ class STGraphMemory:
     # 供 LLM 使用的上下文生成
     # ============================================================
 
+    def _split_sub_queries(self, question: str) -> List[str]:
+        """
+        将复合问题拆分为子查询，提升检索覆盖率。
+        简单规则拆分：按 ? 和常见连接词分句。
+        """
+        import re
+        # 按问号分句
+        parts = re.split(r'[?？]', question)
+        sub_queries = []
+        for p in parts:
+            p = p.strip()
+            if len(p) > 5:  # 过滤太短的
+                sub_queries.append(p)
+        
+        # 如果只有一句或拆分失败，返回原始问题
+        if len(sub_queries) <= 1:
+            return [question]
+        return sub_queries
+
     def get_context_for_qa(self, question: str, sample_id: str = "video_001",
                             top_k: int = 10) -> str:
         """
         为视频问答生成上下文文本
         直接返回可以塞进 LLM prompt 的结构化文本
+
+        支持复合问题：自动拆分子查询，分别检索后合并去重。
 
         Args:
             question: 用户问题
@@ -334,7 +355,49 @@ class STGraphMemory:
         Returns:
             格式化的上下文文本
         """
-        result = self.search(question, sample_id, top_k=top_k)
+        # 拆分子查询
+        sub_queries = self._split_sub_queries(question)
+        
+        # 对每个子查询分别检索，合并去重
+        all_events = []
+        all_entities = []
+        seen_event_ids = set()
+        seen_entity_descs = set()
+        
+        per_query_k = max(top_k, top_k // len(sub_queries) + 5)
+        
+        for sq in sub_queries:
+            result = self.search(sq, sample_id, top_k=per_query_k)
+            for evt in result.get("events", []):
+                eid = evt["metadata"].get("event_id", "")
+                if eid not in seen_event_ids:
+                    seen_event_ids.add(eid)
+                    all_events.append(evt)
+            for ent in result.get("entities", []):
+                desc = ent["metadata"].get("description", "")
+                if desc not in seen_entity_descs:
+                    seen_entity_descs.add(desc)
+                    all_entities.append(ent)
+        
+        # 也用原始完整问题搜一次
+        if len(sub_queries) > 1:
+            result = self.search(question, sample_id, top_k=per_query_k)
+            for evt in result.get("events", []):
+                eid = evt["metadata"].get("event_id", "")
+                if eid not in seen_event_ids:
+                    seen_event_ids.add(eid)
+                    all_events.append(evt)
+            for ent in result.get("entities", []):
+                desc = ent["metadata"].get("description", "")
+                if desc not in seen_entity_descs:
+                    seen_entity_descs.add(desc)
+                    all_entities.append(ent)
+
+        # 按 score 排序后截取
+        all_events.sort(key=lambda x: x["score"], reverse=True)
+        all_entities.sort(key=lambda x: x["score"], reverse=True)
+        events = all_events[:top_k * 2]  # 多给一些上下文
+        entities = all_entities[:top_k]
 
         context_parts = [
             "=== Spatio-Temporal Memory Context ===",
@@ -343,7 +406,6 @@ class STGraphMemory:
         ]
 
         # 添加相关事件
-        events = result.get("events", [])
         if events:
             context_parts.append("--- Relevant Events ---")
             for i, evt in enumerate(events, 1):
@@ -355,7 +417,6 @@ class STGraphMemory:
             context_parts.append("")
 
         # 添加相关实体信息
-        entities = result.get("entities", [])
         if entities:
             context_parts.append("--- Relevant Entity States ---")
             for i, ent in enumerate(entities, 1):
@@ -365,12 +426,22 @@ class STGraphMemory:
                 )
             context_parts.append("")
 
-        # 添加实体摘要（静态/动态实体列表）
+        # 添加实体摘要
+        # 优先使用 tracker（build 模式下有数据），否则从磁盘统计实体索引数
         entity_summary = self.tracker.get_entity_summary()
-        context_parts.append(
-            f"Scene contains {entity_summary['total_entities']} tracked entities "
-            f"({entity_summary['static_entities']} static, "
-            f"{entity_summary['dynamic_entities']} dynamic)"
-        )
+        if entity_summary['total_entities'] > 0:
+            context_parts.append(
+                f"Scene contains {entity_summary['total_entities']} tracked entities "
+                f"({entity_summary['static_entities']} static, "
+                f"{entity_summary['dynamic_entities']} dynamic)"
+            )
+        else:
+            # 查询模式：从磁盘统计
+            entity_count = self.faiss_store.count_entity_keys(sample_id)
+            events_size = self.faiss_store.get_index_size(sample_id, 'events')
+            context_parts.append(
+                f"Scene contains {entity_count} tracked entities, "
+                f"{events_size} events recorded."
+            )
 
         return "\n".join(context_parts)

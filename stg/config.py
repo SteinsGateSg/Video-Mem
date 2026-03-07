@@ -70,7 +70,7 @@ class STGConfig:
     motion: MotionConfig = field(default_factory=MotionConfig)
 
     # 通用
-    similarity_threshold: float = 0.85   # FAISS 检索相似度阈值
+    similarity_threshold: float = 0.3    # FAISS 检索相似度阈值（余弦相似度，越低越宽松）
     top_k: int = 10                      # FAISS 检索返回数量
     verbose: bool = True                 # 是否打印详细日志
 
