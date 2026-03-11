@@ -1,4 +1,39 @@
 #!/usr/bin/env python3
+"""
+LLM 问答脚本
+
+先检索 STG 结构化证据，再将证据传给 OpenAI 兼容 LLM 生成 grounded 答案。
+
+用法（实际调用 LLM）：
+    cd stg_reference_v2
+    PYTHONPATH=. python scripts/llm_qa.py \\
+        --sample_id video_001 \\
+        --query "What happened to the basketball?" \\
+        --output_dir ./outputs \\
+        --api_base "https://dashscope.aliyuncs.com/compatible-mode/v1" \\
+        --api_key "sk-78fece650be14d39af245674475a8f71" \\
+        --model "qwen-plus-2025-07-14"
+
+    $env:PYTHONPATH="."; python scripts/llm_qa.py --sample_id video_001 --query "What happened to the basketball?" --output_dir ./outputs --api_base "https://dashscope.aliyuncs.com/compatible-mode/v1" --api_key "sk-78fece650be14d39af245674475a8f71" --model "qwen-plus-2025-07-14"
+
+用法（干跑模式，不调用 LLM，仅查看 prompt 和证据）：
+    PYTHONPATH=. python scripts/llm_qa.py \\
+        --sample_id video_001 \\
+        --query "..." \\
+        --dry_run
+
+参数说明：
+    --sample_id:          之前 build 时使用的 sample_id
+    --query:              自然语言问题
+    --output_dir:         与 build 时相同的输出目录
+    --api_base:           OpenAI 兼容 API 端点
+    --api_key:            API 密钥
+    --model:              模型名称
+    --top_k:              检索事件证据条数
+    --embedding_backend:  嵌入后端（需与 build 时一致）
+    --dry_run:            仅输出证据和 prompt，不实际调用 LLM
+    --json:               以 JSON 格式输出最终答案
+"""
 from __future__ import annotations
 
 import argparse

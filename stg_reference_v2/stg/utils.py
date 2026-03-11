@@ -1,3 +1,43 @@
+"""
+通用工具函数模块
+
+本模块汇集了 STG 系统中被多个模块共用的底层工具，涵盖以下几类：
+
+1. **IO 工具**
+   - ensure_dir: 确保目录存在
+   - dump_json / load_json: JSON 序列化/反序列化
+   - extract_json_object: 从可能含有非 JSON 前缀/后缀的文本中提取 JSON 对象
+
+2. **几何计算**
+   - box_center / box_area / compute_iou / compute_iou_matrix: 边界框运算
+   - euclidean_distance / compute_displacement: 点/框的欧氏距离
+   - compute_direction / angle_difference_deg: 方向角与角度差
+
+3. **文本归一化**
+   - normalize_text / normalize_label / normalize_tag: 统一文本格式（小写、去多余空格）
+   - normalize_relation_name / normalize_relation_target: 关系名与目标标签归一化
+   - tokenize / concept_tokens: 分词与概念 token 提取
+
+4. **嵌入管理**
+   - EmbeddingManager: 统一的向量编码器，支持 sentence-transformers 和 hashing 两种后端
+     - embed(text) / embed_batch(texts): 单条/批量文本编码
+     - label_embedding(label): 带缓存的标签嵌入
+     - cosine_similarity(a, b): 余弦相似度
+
+5. **关系/属性处理**
+   - normalize_relations / diff_relations / normalize_attributes: 关系集合的归一化、差集计算、属性归一化
+   - relations_to_serializable: 关系集合 → 可 JSON 序列化格式
+
+6. **场景图辅助**
+   - filter_objects_by_score: 按检测分数过滤物体
+   - frame_index_from_frame: 从帧 dict 提取帧编号
+   - compact_box: 边界框转紧凑字符串
+   - entity_state_description: 生成实体状态的自然语言描述
+
+7. **查询拆分**
+   - decompose_query: 将复合问题按连词/标点拆分为子问题列表
+"""
+
 from __future__ import annotations
 
 import hashlib

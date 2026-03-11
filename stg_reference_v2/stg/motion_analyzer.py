@@ -1,3 +1,22 @@
+"""
+运动与交互分析模块
+
+本模块对缓冲区内的实体轨迹进行分析，生成两类分析结果：
+
+1. **单实体轨迹分析** (analyze_single_entity)
+   - 计算总位移、平均速度、运动方向、方向突变次数
+   - 判定运动模式：stationary / moving_left / moving_right / moving_up / moving_down /
+     jumping_up / direction_change
+
+2. **双实体交互分析** (analyze_all_interactions)
+   - 对缓冲区内所有实体对做两两分析
+   - 比较起始距离和结束距离的比值，判定交互类型：
+     approaching_each_other / departing_from_each_other / moving_together
+   - 距离比在中间区间时，通过运动方向夹角判断是否同向移动
+
+分析结果会传给 EventGenerator 生成 trajectory_summary 和 interaction 事件。
+"""
+
 from __future__ import annotations
 
 import itertools

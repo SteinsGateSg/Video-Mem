@@ -1,3 +1,27 @@
+"""
+跨帧实体跟踪与关联模块
+
+本模块实现了基于 IoU + 标签嵌入相似度 + 匈牙利匹配 的跨帧实体跟踪器。
+核心职责：
+    1. 为每一帧的检测物体分配全局唯一的 entity_id
+    2. 利用匈牙利算法将当前帧物体与已知实体进行最优匹配
+    3. 管理实体生命周期：active → inactive → disappeared
+    4. 记录每个实体的轨迹历史、属性变化历史、关系变化历史和状态变化历史
+
+关键类：
+    - EntityRecord:           单个实体的完整状态记录（含轨迹、属性、关系、状态历史等）
+    - MatchResult:            一次成功匹配的详细信息
+    - FrameAssociationResult: 一帧处理后的全部关联结果（已匹配/新出现/消失的实体）
+    - EntityTracker:          跟踪器主类
+        - process_frame(objects, frame_index): 处理一帧，返回 FrameAssociationResult
+        - export_registry(): 导出所有实体的快照列表
+
+匹配策略：
+    综合分 = iou_weight * IoU + (1 - iou_weight) * label_cosine_similarity
+    然后通过 combined_threshold 和 label_threshold 双重过滤。
+    如果 tag 完全相同，可放宽 min_iou_threshold 限制。
+"""
+
 from __future__ import annotations
 
 import copy

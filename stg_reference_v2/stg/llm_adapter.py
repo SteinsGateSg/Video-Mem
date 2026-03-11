@@ -1,3 +1,22 @@
+"""
+LLM 适配器模块
+
+本模块封装了与 OpenAI 兼容 API 的交互逻辑，使 STG 系统能将结构化证据发送给任意
+支持 OpenAI chat completions 接口的大语言模型（如 GPT-4、Qwen、DeepSeek 等）。
+
+核心类：
+    OpenAICompatibleLLMAdapter:
+        - 初始化参数：api_base（API 端点）、api_key、model（模型名）、temperature
+        - answer(prompts, evidence): 将 grounded prompt 发送给 LLM，解析并返回结构化答案
+        - 如果 evidence 中既没有事件也没有实体，直接返回 insufficient evidence 结果
+        - 自动解析 LLM 返回的 JSON 响应；若解析失败则保留原始文本
+
+异常：
+    LLMAdapterError: API 配置缺失或 openai 包未安装时抛出
+
+注意：openai 包是可选依赖，未安装时系统仍可正常构建和检索，只是无法调用 LLM。
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

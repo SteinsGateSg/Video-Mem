@@ -1,3 +1,22 @@
+"""
+缓冲区更新模块（Buffer Update）
+
+本模块实现了帧级观测数据的缓冲与定期刷新机制。
+与 ImmediateUpdater 逐帧生成事件不同，BufferUpdater 积累若干帧后一次性分析：
+
+工作流程：
+    1. observe(frame_observations): 每帧调用，将当前帧的所有活跃实体观测加入缓冲区
+    2. 当缓冲区满（达到 buffer_size 帧）后返回 True，由外层调用 flush()
+    3. flush(sample_id):
+       a. 将缓冲区内所有观测按 entity_id 分组组织轨迹
+       b. 对每个实体调用 MotionAnalyzer.analyze_single_entity() 生成轨迹摘要
+       c. 调用 MotionAnalyzer.analyze_all_interactions() 分析实体间交互
+       d. 将生成的 trajectory_summary 和 interaction 事件向量化并写入 VectorStore
+       e. 清空缓冲区
+
+这一机制确保了跨帧运动模式和实体间交互关系能够被一次性捕获。
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict

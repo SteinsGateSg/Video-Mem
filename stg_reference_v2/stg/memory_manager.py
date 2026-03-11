@@ -1,3 +1,39 @@
+"""
+记忆管理器——STG 系统主控模块
+
+本模块是 STG 系统的顶层入口，STGraphMemory 类编排了构建、检索、导出的全部流程。
+
+■ 构建流程 (build)
+    1. 加载并归一化场景图 JSON
+    2. 逐帧调用 ImmediateUpdater 生成即时事件和实体状态
+    3. 帧观测送入 BufferUpdater 缓冲区，满时 flush 生成轨迹和交互事件
+    4. 持久化向量存储到磁盘
+    5. 导出 entity_registry.json 和 stg_graph.json
+
+■ 检索流程 (retrieve_evidence)
+    1. 调用 QueryParser 将自然语言问题解析为结构化查询信息
+    2. 如果启用子查询分解，对每个子查询分别编码并在 events/entities 分区做 dense 检索
+    3. 合并去重后，调用 _rerank_hits() 进行启发式重排序：
+       - 实体命中加分、关系关键词命中加分、时序线索加分、事件类型-意图匹配加分
+    4. 通过 EvidenceFormatter 组装成完整的 evidence bundle
+
+■ LLM 问答 (format_evidence_for_llm + build_grounded_prompt)
+    1. 从 evidence bundle 提取精简 JSON 证据
+    2. 构建 system_prompt + user_prompt，送入 LLM
+
+■ 图导出 (export_stg_graph)
+    - 将实体和事件组织为图节点
+    - 生成三类边：event_to_entity_association、temporal_entity_chain、temporal_adjacency
+
+公开接口：
+    - build(scene_graph_path, sample_id) → 构建统计信息
+    - retrieve_evidence(query, sample_id, ...) → evidence bundle
+    - search(query, sample_id, ...) → 同 retrieve_evidence（别名）
+    - get_context_for_qa(query, sample_id, ...) → evidence_text 字符串
+    - format_evidence_for_llm(bundle, ...) → LLM 精简证据 JSON
+    - build_grounded_prompt(query, llm_evidence) → {system_prompt, user_prompt}
+"""
+
 from __future__ import annotations
 
 from collections import defaultdict

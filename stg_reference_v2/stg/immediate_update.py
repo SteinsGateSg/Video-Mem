@@ -1,3 +1,26 @@
+"""
+即时更新模块（Immediate Update）
+
+本模块负责逐帧处理：对每一帧的检测物体，执行实体关联并立即生成事件记忆和实体状态记忆。
+这是 STG 构建流程中"实时事件生成"的核心环节。
+
+处理流程（process_frame）：
+    1. 按 detection_score_threshold 过滤低分物体
+    2. 调用 EntityTracker.process_frame() 执行跨帧实体匹配
+    3. 如果是首帧：
+       - 生成 initial_scene 事件
+       - 为每个新实体生成 entity_appeared 事件 + entity_state 记忆
+    4. 对于已匹配的实体：
+       - 位移超过阈值 → 生成 entity_moved 事件
+       - 关系发生变化 → 生成 relation_changed 事件
+       - 属性发生变化 → 生成 attribute_changed 事件
+       - 更新该实体的 entity_state 记忆
+    5. 对于新出现的实体 → 生成 entity_appeared + entity_state
+    6. 对于消失的实体 → 生成 entity_disappeared 事件
+
+所有事件的 summary 文本会被向量化后写入 VectorStore。
+"""
+
 from __future__ import annotations
 
 import hashlib

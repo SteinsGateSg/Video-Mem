@@ -1,4 +1,20 @@
 #!/usr/bin/env python3
+"""
+最小化端到端演示脚本
+
+使用内置的 data/toy_scene_graphs.json 进行完整的 build → query 流程演示。
+强制使用 hashing 嵌入后端，确保无需 GPU 或外部模型即可运行。
+
+用法：
+    cd stg_reference_v2
+    PYTHONPATH=. python scripts/demo_minimal.py
+
+流程：
+    1. 从 toy_scene_graphs.json 构建 STG 记忆
+    2. 输出构建统计信息
+    3. 对多个示例问题执行检索
+    4. 打印每个问题的 evidence_text
+"""
 from __future__ import annotations
 
 from pathlib import Path

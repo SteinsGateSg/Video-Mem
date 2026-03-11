@@ -1,4 +1,28 @@
 #!/usr/bin/env python3
+"""
+在线检索脚本
+
+对已构建的 STG 记忆执行自然语言检索，返回结构化证据（evidence bundle）。
+
+用法：
+    cd stg_reference_v2
+    PYTHONPATH=. python scripts/query_stg.py \\
+        --sample_id toy_video \\
+        --query "What happened to the basketball?" \\
+        --output_dir ./outputs \\
+        --top_k 8
+
+参数说明：
+    --sample_id:          之前 build 时使用的 sample_id
+    --query:              自然语言问题
+    --output_dir:         与 build 时相同的输出目录
+    --top_k:              返回的事件证据条数
+    --embedding_backend:  嵌入后端（需与 build 时一致）
+    --json:               加上此标志后输出完整 JSON 而非人类可读文本
+
+输出：
+    默认输出人类可读的 evidence_text，加 --json 后输出完整的 evidence bundle JSON。
+"""
 from __future__ import annotations
 
 import argparse

@@ -1,3 +1,21 @@
+"""
+场景图数据校验与归一化模块
+
+本模块负责将原始 scene graph JSON 转换为统一、规范的内部格式。
+主要完成以下工作：
+    1. 校验 JSON 结构的合法性（frame 必须是 dict、object 必须包含 tag/label/bbox 等）
+    2. 归一化字段值：标签/标记 → normalize_label/normalize_tag、bbox → 浮点数、关系 → 去重统一格式
+    3. 兼容多种输入字段名（如 bbox/box、label/category、subject_relations/object_relations 等）
+    4. 发现不合法数据时抛出 SceneGraphValidationError，附带精确的帧号和物体索引
+
+核心函数：
+    - load_and_normalize_scene_graph(path): 加载 JSON 文件并返回归一化后的帧列表
+    - normalize_scene_graph_payload(payload): 对已加载的 payload 做归一化
+
+异常：
+    - SceneGraphValidationError: 场景图不符合预期格式时抛出
+"""
+
 from __future__ import annotations
 
 from pathlib import Path

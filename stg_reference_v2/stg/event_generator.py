@@ -1,3 +1,23 @@
+"""
+事件生成器模块
+
+本模块负责根据实体跟踪结果和运动分析结果，生成结构化的事件记忆（event memory）。
+每条事件记忆包含统一的元数据格式：memory_type, event_type, frame_start/end, entities,
+summary, confidence, source, details 等字段，并附带 dedupe_key 用于去重。
+
+支持生成的事件类型：
+    - initial_scene:        首帧场景描述（包含物体数量和类型组成）
+    - entity_appeared:      某实体首次出现
+    - entity_disappeared:   某实体消失
+    - entity_moved:         某实体发生显著位移
+    - relation_changed:     某实体的关系发生变化（新增/移除了哪些关系）
+    - attribute_changed:    某实体的属性发生变化
+    - trajectory_summary:   缓冲区级别的轨迹运动摘要
+    - interaction:          缓冲区级别的两实体交互事件（接近/远离/同向移动）
+
+每种事件的 summary 是自然语言文本，会被向量化后存入 FAISS 索引，用于后续检索。
+"""
+
 from __future__ import annotations
 
 import hashlib

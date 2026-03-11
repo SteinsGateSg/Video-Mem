@@ -1,3 +1,30 @@
+"""
+向量存储模块（Vector Store）
+
+本模块提供了一个轻量级的持久化向量存储系统，支持可选的 FAISS 加速。
+核心设计：
+    - 按 (sample_id, key) 二级分区组织数据（如 sample_id="video_001", key="events"/"entities"）
+    - 每个分区是一个 VectorPartition，内含向量列表和元数据列表
+    - 支持 dedupe_key 机制防止重复写入
+
+VectorPartition:
+    - add(vector, metadata):    添加一条向量及其元数据，自动跳过重复 dedupe_key
+    - search(query, top_k):     执行 top-k 最近邻搜索（FAISS IndexFlatIP 或 NumPy 内积回退）
+
+VectorStore:
+    - add(sample_id, key, vector, metadata):        向指定分区添加数据
+    - search(sample_id, key, query, top_k):         在指定分区搜索最相似的 top_k 条
+    - save_sample(sample_id):                       持久化所有分区到磁盘（.npy + _meta.json + .index）
+    - clear_sample(sample_id):                      清除内存和磁盘上该 sample 的所有数据
+    - available_keys(sample_id):                    列出该 sample 已有的所有分区 key
+    - all_metadata(sample_id, key):                 返回分区的全部元数据列表
+
+持久化文件格式：
+    outputs/store/<sample_id>/<key>.npy             向量矩阵
+    outputs/store/<sample_id>/<key>_meta.json       元数据 JSON
+    outputs/store/<sample_id>/<key>.index            FAISS 索引（可选）
+"""
+
 from __future__ import annotations
 
 import threading

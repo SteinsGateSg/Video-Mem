@@ -1,3 +1,23 @@
+"""
+证据格式化模块（Evidence Formatter）
+
+本模块负责将检索和重排后的事件/实体证据，格式化为不同消费者所需的格式。
+
+三个核心功能：
+    1. build_bundle():          将 QueryParseResult + 事件列表 + 实体列表 + registry
+                                组装成完整的 evidence bundle（含 evidence_text、evidence_json 等）
+    2. format_evidence_for_llm(): 从 bundle 中提取 LLM 所需的精简 JSON 证据
+                                （限制 max_events / max_entities，只保留关键字段）
+    3. build_grounded_prompt(): 生成 system_prompt + user_prompt，要求 LLM：
+                                - 仅基于提供的证据作答
+                                - 返回标准 JSON 格式（含 answer、sufficient_evidence、
+                                  used_event_ids、used_entity_ids、short_rationale）
+                                - 证据不足时允许返回 sufficient_evidence=false
+
+evidence_text 是面向人类可读的文本摘要，适合调试和日志。
+evidence_json 是面向程序消费的结构化数据。
+"""
+
 from __future__ import annotations
 
 import json

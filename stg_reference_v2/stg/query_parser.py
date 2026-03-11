@@ -1,3 +1,23 @@
+"""
+查询解析模块（Query Parser）
+
+本模块负责将用户的自然语言问题解析为结构化的查询信息 QueryParseResult，
+供后续的检索和重排序环节使用。
+
+解析内容：
+    1. **查询归一化**：统一小写、去多余空格
+    2. **子查询分解**：按连词（and/then/while）和标点（?!；等）拆分复合问题
+    3. **实体匹配**：将查询中的词与 entity_registry 中的 tag/label 做概念 token 交集匹配，
+       找出查询可能涉及的 entity_id / entity_tag / entity_label
+    4. **关系关键词提取**：识别 relation/interact/near/holding 等关系线索词
+    5. **时序关键词提取**：识别 before/after/first/last/during 等时序线索词
+    6. **查询意图推断**：根据关键词命中情况推断意图类型
+       （relation / motion / appearance / disappearance / attribute / general）
+    7. **优先事件类型**：根据意图推断应优先检索哪些 event_type
+
+输出：QueryParseResult dataclass，包含上述所有解析结果。
+"""
+
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
