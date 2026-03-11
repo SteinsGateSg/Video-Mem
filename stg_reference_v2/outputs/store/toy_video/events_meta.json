@@ -1,0 +1,912 @@
+[
+  {
+    "memory_type": "event",
+    "event_type": "initial_scene",
+    "frame_start": 0,
+    "frame_end": 0,
+    "entities": [],
+    "entity_tags": [
+      "basketball_1",
+      "hoop_1",
+      "player_1"
+    ],
+    "entity_labels": [
+      "basketball",
+      "basketball_hoop",
+      "person"
+    ],
+    "summary": "Initial scene at frame 0 contains 3 objects: 1 basketball, 1 basketball_hoop, 1 person.",
+    "confidence": 1.0,
+    "source": "immediate",
+    "details": {
+      "object_count": 3,
+      "composition": {
+        "person": 1,
+        "basketball": 1,
+        "basketball_hoop": 1
+      }
+    },
+    "dedupe_key": "d2ceba10871cc077c6a48d23bdd0954bd1a7cf7a",
+    "memory_id": "events_000000"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_appeared",
+    "frame_start": 0,
+    "frame_end": 0,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) appeared at frame 0; box=[20, 120, 70, 220]; attributes=looking_right, standing.",
+    "confidence": 0.98,
+    "source": "immediate",
+    "details": {
+      "bbox": [
+        20.0,
+        120.0,
+        70.0,
+        220.0
+      ],
+      "attributes": [
+        "looking_right",
+        "standing"
+      ]
+    },
+    "dedupe_key": "90c13710ff834207b6d1178d81fef68cb41399f7",
+    "memory_id": "events_000001"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_appeared",
+    "frame_start": 0,
+    "frame_end": 0,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) appeared at frame 0; box=[85, 165, 105, 185]; attributes=orange.",
+    "confidence": 0.99,
+    "source": "immediate",
+    "details": {
+      "bbox": [
+        85.0,
+        165.0,
+        105.0,
+        185.0
+      ],
+      "attributes": [
+        "orange"
+      ]
+    },
+    "dedupe_key": "2874dde78cd644eef0f2ca0dca97299c7fe633cb",
+    "memory_id": "events_000002"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_appeared",
+    "frame_start": 0,
+    "frame_end": 0,
+    "entities": [
+      "entity_0003"
+    ],
+    "entity_tags": [
+      "hoop_1"
+    ],
+    "entity_labels": [
+      "basketball_hoop"
+    ],
+    "summary": "entity_0003 hoop_1 (basketball_hoop) appeared at frame 0; box=[235, 70, 265, 150]; attributes=static.",
+    "confidence": 0.99,
+    "source": "immediate",
+    "details": {
+      "bbox": [
+        235.0,
+        70.0,
+        265.0,
+        150.0
+      ],
+      "attributes": [
+        "static"
+      ]
+    },
+    "dedupe_key": "b28b36d4f8b9b1c99b882a2e47538494dd414260",
+    "memory_id": "events_000003"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 1,
+    "frame_end": 1,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved at frame 1 from [20, 120, 70, 220] to [50, 118, 100, 218] with displacement 30.1px.",
+    "confidence": 0.9007,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        20.0,
+        120.0,
+        70.0,
+        220.0
+      ],
+      "curr_bbox": [
+        50.0,
+        118.0,
+        100.0,
+        218.0
+      ],
+      "displacement": 30.066592756745816
+    },
+    "dedupe_key": "96927ad19b6d49b4d33cca1322565ad1f5b4d140",
+    "memory_id": "events_000004"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "attribute_changed",
+    "frame_start": 1,
+    "frame_end": 1,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) attributes changed at frame 1; from looking_right, standing to looking_right, running.",
+    "confidence": 0.78,
+    "source": "immediate",
+    "details": {
+      "prev_attributes": [
+        "looking_right",
+        "standing"
+      ],
+      "curr_attributes": [
+        "looking_right",
+        "running"
+      ]
+    },
+    "dedupe_key": "c5ef96a9764b0f8135da82e703b0de24c3ad164c",
+    "memory_id": "events_000005"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 1,
+    "frame_end": 1,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) moved at frame 1 from [85, 165, 105, 185] to [115, 162, 135, 182] with displacement 30.1px.",
+    "confidence": 0.9015,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        85.0,
+        165.0,
+        105.0,
+        185.0
+      ],
+      "curr_bbox": [
+        115.0,
+        162.0,
+        135.0,
+        182.0
+      ],
+      "displacement": 30.14962686336267
+    },
+    "dedupe_key": "6bef502e500b6b27c4027cf62e4670532f15493c",
+    "memory_id": "events_000006"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved at frame 2 from [50, 118, 100, 218] to [100, 108, 150, 208] with displacement 51.0px.",
+    "confidence": 1.0,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        50.0,
+        118.0,
+        100.0,
+        218.0
+      ],
+      "curr_bbox": [
+        100.0,
+        108.0,
+        150.0,
+        208.0
+      ],
+      "displacement": 50.99019513592785
+    },
+    "dedupe_key": "c11b79297082a75f658445930906037765836ffc",
+    "memory_id": "events_000007"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "relation_changed",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) relation changed at frame 2; added=approaching->hoop_1, holding->basketball_1; removed=near->basketball_1.",
+    "confidence": 0.82,
+    "source": "immediate",
+    "details": {
+      "added_relations": [
+        {
+          "name": "approaching",
+          "object": "hoop_1"
+        },
+        {
+          "name": "holding",
+          "object": "basketball_1"
+        }
+      ],
+      "removed_relations": [
+        {
+          "name": "near",
+          "object": "basketball_1"
+        }
+      ]
+    },
+    "dedupe_key": "97482291ad8f23cd29970317f2abb24b53c01715",
+    "memory_id": "events_000008"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "attribute_changed",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) attributes changed at frame 2; from looking_right, running to holding_ball, running.",
+    "confidence": 0.78,
+    "source": "immediate",
+    "details": {
+      "prev_attributes": [
+        "looking_right",
+        "running"
+      ],
+      "curr_attributes": [
+        "holding_ball",
+        "running"
+      ]
+    },
+    "dedupe_key": "6ecbcc14a0684528f523af4291f819c249e3d9b8",
+    "memory_id": "events_000009"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) moved at frame 2 from [115, 162, 135, 182] to [130, 140, 150, 160] with displacement 26.6px.",
+    "confidence": 0.8663,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        115.0,
+        162.0,
+        135.0,
+        182.0
+      ],
+      "curr_bbox": [
+        130.0,
+        140.0,
+        150.0,
+        160.0
+      ],
+      "displacement": 26.627053911388696
+    },
+    "dedupe_key": "cd566cc26fa68d5cd47114055e585f7e454a4052",
+    "memory_id": "events_000010"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "relation_changed",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) relation changed at frame 2; added=held_by->player_1; removed=near->player_1.",
+    "confidence": 0.82,
+    "source": "immediate",
+    "details": {
+      "added_relations": [
+        {
+          "name": "held_by",
+          "object": "player_1"
+        }
+      ],
+      "removed_relations": [
+        {
+          "name": "near",
+          "object": "player_1"
+        }
+      ]
+    },
+    "dedupe_key": "85a9a5bb53a7470cce35fcd958d9474a6f8c9f70",
+    "memory_id": "events_000011"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "attribute_changed",
+    "frame_start": 2,
+    "frame_end": 2,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) attributes changed at frame 2; from orange to orange, with_player.",
+    "confidence": 0.78,
+    "source": "immediate",
+    "details": {
+      "prev_attributes": [
+        "orange"
+      ],
+      "curr_attributes": [
+        "orange",
+        "with_player"
+      ]
+    },
+    "dedupe_key": "742461ab27c2f3480c7d771b795d39e3e932f011",
+    "memory_id": "events_000012"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "trajectory_summary",
+    "frame_start": 0,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved moving_right from frame 0 to 2; total_displacement=80.9px; avg_speed=40.45px/frame.",
+    "confidence": 1.0,
+    "source": "buffer",
+    "details": {
+      "frame_start": 0,
+      "frame_end": 2,
+      "total_displacement": 80.89499366462674,
+      "avg_speed": 40.44749683231337,
+      "mode": "moving_right",
+      "direction_changes": 0,
+      "num_observations": 3
+    },
+    "dedupe_key": "c78a8d2dd5be04a8f6bdc6a4be8c8b4eff22d875",
+    "memory_id": "events_000013"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "trajectory_summary",
+    "frame_start": 0,
+    "frame_end": 2,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) moved direction_change from frame 0 to 2; total_displacement=51.5px; avg_speed=25.74px/frame.",
+    "confidence": 0.9932,
+    "source": "buffer",
+    "details": {
+      "frame_start": 0,
+      "frame_end": 2,
+      "total_displacement": 51.478150704935004,
+      "avg_speed": 25.739075352467502,
+      "mode": "direction_change",
+      "direction_changes": 1,
+      "num_observations": 3
+    },
+    "dedupe_key": "d2dc9272e861d703337c1579d5f2068cde4d9aef",
+    "memory_id": "events_000014"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "interaction",
+    "frame_start": 0,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001",
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "player_1",
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "person",
+      "basketball"
+    ],
+    "summary": "entity_0001 and entity_0002 had interaction approaching_each_other from frame 0 to 2; distance 50.2px -> 17.0px.",
+    "confidence": 1.0,
+    "source": "buffer",
+    "details": {
+      "tag_a": "player_1",
+      "tag_b": "basketball_1",
+      "label_a": "person",
+      "label_b": "basketball",
+      "frame_start": 0,
+      "frame_end": 2,
+      "distance_start": 50.24937810560445,
+      "distance_end": 17.0,
+      "interaction_type": "approaching_each_other",
+      "num_common_frames": 3
+    },
+    "dedupe_key": "b9cb068e1d549521f0c21bd48efa8ee4b0872ff8",
+    "memory_id": "events_000015"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "interaction",
+    "frame_start": 0,
+    "frame_end": 2,
+    "entities": [
+      "entity_0001",
+      "entity_0003"
+    ],
+    "entity_tags": [
+      "player_1",
+      "hoop_1"
+    ],
+    "entity_labels": [
+      "person",
+      "basketball_hoop"
+    ],
+    "summary": "entity_0001 and entity_0003 had interaction approaching_each_other from frame 0 to 2; distance 213.6px -> 133.9px.",
+    "confidence": 0.9988,
+    "source": "buffer",
+    "details": {
+      "tag_a": "player_1",
+      "tag_b": "hoop_1",
+      "label_a": "person",
+      "label_b": "basketball_hoop",
+      "frame_start": 0,
+      "frame_end": 2,
+      "distance_start": 213.60009363293827,
+      "distance_end": 133.8992158304148,
+      "interaction_type": "approaching_each_other",
+      "num_common_frames": 3
+    },
+    "dedupe_key": "c02039a9c9f8da86209edfe4c50868df30d4e638",
+    "memory_id": "events_000016"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "interaction",
+    "frame_start": 0,
+    "frame_end": 2,
+    "entities": [
+      "entity_0002",
+      "entity_0003"
+    ],
+    "entity_tags": [
+      "basketball_1",
+      "hoop_1"
+    ],
+    "entity_labels": [
+      "basketball",
+      "basketball_hoop"
+    ],
+    "summary": "entity_0002 and entity_0003 had interaction approaching_each_other from frame 0 to 2; distance 168.1px -> 117.0px.",
+    "confidence": 0.959,
+    "source": "buffer",
+    "details": {
+      "tag_a": "basketball_1",
+      "tag_b": "hoop_1",
+      "label_a": "basketball",
+      "label_b": "basketball_hoop",
+      "frame_start": 0,
+      "frame_end": 2,
+      "distance_start": 168.0773631397161,
+      "distance_end": 117.04699910719626,
+      "interaction_type": "approaching_each_other",
+      "num_common_frames": 3
+    },
+    "dedupe_key": "f5abbf47f40f9c17076766e378af0a36512dc5e1",
+    "memory_id": "events_000017"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 3,
+    "frame_end": 3,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved at frame 3 from [100, 108, 150, 208] to [150, 80, 200, 180] with displacement 57.3px.",
+    "confidence": 1.0,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        100.0,
+        108.0,
+        150.0,
+        208.0
+      ],
+      "curr_bbox": [
+        150.0,
+        80.0,
+        200.0,
+        180.0
+      ],
+      "displacement": 57.30619512757761
+    },
+    "dedupe_key": "4147be9f81fea9cc04f8caeee222875e06d48bf4",
+    "memory_id": "events_000018"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "relation_changed",
+    "frame_start": 3,
+    "frame_end": 3,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) relation changed at frame 3; added=near->hoop_1; removed=approaching->hoop_1.",
+    "confidence": 0.82,
+    "source": "immediate",
+    "details": {
+      "added_relations": [
+        {
+          "name": "near",
+          "object": "hoop_1"
+        }
+      ],
+      "removed_relations": [
+        {
+          "name": "approaching",
+          "object": "hoop_1"
+        }
+      ]
+    },
+    "dedupe_key": "8e3bf10375fb6692963210afaafa51a1ff93fa54",
+    "memory_id": "events_000019"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "attribute_changed",
+    "frame_start": 3,
+    "frame_end": 3,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) attributes changed at frame 3; from holding_ball, running to holding_ball, jumping.",
+    "confidence": 0.78,
+    "source": "immediate",
+    "details": {
+      "prev_attributes": [
+        "holding_ball",
+        "running"
+      ],
+      "curr_attributes": [
+        "holding_ball",
+        "jumping"
+      ]
+    },
+    "dedupe_key": "5833b22c4e608712c68718fc965e59aadfc17734",
+    "memory_id": "events_000020"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 3,
+    "frame_end": 3,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) moved at frame 3 from [130, 140, 150, 160] to [175, 92, 195, 112] with displacement 65.8px.",
+    "confidence": 1.0,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        130.0,
+        140.0,
+        150.0,
+        160.0
+      ],
+      "curr_bbox": [
+        175.0,
+        92.0,
+        195.0,
+        112.0
+      ],
+      "displacement": 65.79513659838392
+    },
+    "dedupe_key": "091df56f2a0bf8fc041dbd1aeb139ac9b64692d2",
+    "memory_id": "events_000021"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_moved",
+    "frame_start": 4,
+    "frame_end": 4,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved at frame 4 from [150, 80, 200, 180] to [180, 88, 230, 188] with displacement 31.0px.",
+    "confidence": 0.9105,
+    "source": "immediate",
+    "details": {
+      "prev_bbox": [
+        150.0,
+        80.0,
+        200.0,
+        180.0
+      ],
+      "curr_bbox": [
+        180.0,
+        88.0,
+        230.0,
+        188.0
+      ],
+      "displacement": 31.04834939252005
+    },
+    "dedupe_key": "f842eb5242aed2d5a3e325b3bc9a07e7eb8df6d2",
+    "memory_id": "events_000022"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "relation_changed",
+    "frame_start": 4,
+    "frame_end": 4,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) relation changed at frame 4; added=none; removed=holding->basketball_1.",
+    "confidence": 0.82,
+    "source": "immediate",
+    "details": {
+      "added_relations": [],
+      "removed_relations": [
+        {
+          "name": "holding",
+          "object": "basketball_1"
+        }
+      ]
+    },
+    "dedupe_key": "c80c7719e0b8d3340d78944550246bc2f9aafe00",
+    "memory_id": "events_000023"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "attribute_changed",
+    "frame_start": 4,
+    "frame_end": 4,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) attributes changed at frame 4; from holding_ball, jumping to landing, looking_up.",
+    "confidence": 0.78,
+    "source": "immediate",
+    "details": {
+      "prev_attributes": [
+        "holding_ball",
+        "jumping"
+      ],
+      "curr_attributes": [
+        "landing",
+        "looking_up"
+      ]
+    },
+    "dedupe_key": "bbcb4487bd28e878c24d5bce19b00f1d850e31a3",
+    "memory_id": "events_000024"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "entity_disappeared",
+    "frame_start": 4,
+    "frame_end": 4,
+    "entities": [
+      "entity_0002"
+    ],
+    "entity_tags": [
+      "basketball_1"
+    ],
+    "entity_labels": [
+      "basketball"
+    ],
+    "summary": "entity_0002 basketball_1 (basketball) disappeared at frame 4; last_box=[175, 92, 195, 112].",
+    "confidence": 0.85,
+    "source": "immediate",
+    "details": {
+      "last_bbox": [
+        175.0,
+        92.0,
+        195.0,
+        112.0
+      ],
+      "missed_frames": 1,
+      "disappeared_frame": 4
+    },
+    "dedupe_key": "cd6036c3ef520f02b90035eed1cd6fb688c23cc3",
+    "memory_id": "events_000025"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "trajectory_summary",
+    "frame_start": 3,
+    "frame_end": 4,
+    "entities": [
+      "entity_0001"
+    ],
+    "entity_tags": [
+      "player_1"
+    ],
+    "entity_labels": [
+      "person"
+    ],
+    "summary": "entity_0001 player_1 (person) moved moving_right from frame 3 to 4; total_displacement=31.0px; avg_speed=31.05px/frame.",
+    "confidence": 0.857,
+    "source": "buffer",
+    "details": {
+      "frame_start": 3,
+      "frame_end": 4,
+      "total_displacement": 31.04834939252005,
+      "avg_speed": 31.04834939252005,
+      "mode": "moving_right",
+      "direction_changes": 0,
+      "num_observations": 2
+    },
+    "dedupe_key": "f05c4a204b9722812a0af1a5ee71a65b2b210fe7",
+    "memory_id": "events_000026"
+  },
+  {
+    "memory_type": "event",
+    "event_type": "interaction",
+    "frame_start": 3,
+    "frame_end": 4,
+    "entities": [
+      "entity_0001",
+      "entity_0003"
+    ],
+    "entity_tags": [
+      "player_1",
+      "hoop_1"
+    ],
+    "entity_labels": [
+      "person",
+      "basketball_hoop"
+    ],
+    "summary": "entity_0001 and entity_0003 had interaction approaching_each_other from frame 3 to 4; distance 77.6px -> 53.0px.",
+    "confidence": 0.9661,
+    "source": "buffer",
+    "details": {
+      "tag_a": "player_1",
+      "tag_b": "hoop_1",
+      "label_a": "person",
+      "label_b": "basketball_hoop",
+      "frame_start": 3,
+      "frame_end": 4,
+      "distance_start": 77.62087348130012,
+      "distance_end": 53.0,
+      "interaction_type": "approaching_each_other",
+      "num_common_frames": 2
+    },
+    "dedupe_key": "55a5a2f4413981b58b0cab134f82dfb8fd035cfc",
+    "memory_id": "events_000027"
+  }
+]
